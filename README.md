@@ -2,6 +2,13 @@
 
 Example Project for Graduates, using a Timesheet application as example with the following entities included:
 
+## Getting Started
+
+Prior to running the project you'll need an .npmrc file that gives access to some internal packages.
+This file can be found within the company Teams channel (Tools nad Processes).
+
+Remember to install both dependencies for the UI and the service module prior to running the solution.
+
 Entity | Purpose
 ---------|----------
 `Employee` | The Employees that can access the Timesheet
@@ -13,7 +20,7 @@ Entity | Purpose
 
 ## Next Steps
 
-Implement UI Module `timesheet` 
+Implement UI Module `timesheet`
 
 The UI must have the following:
 
@@ -37,7 +44,7 @@ The Backend Service must add the following:
 
 - Provide _Function_ for Remaining Hours for Employee on Project, based on subtracting hours from WorkHours and AssignedHours in ProjectAssignment
 - Don't list Project where there is 0 hours left on Project Assignments or it is not no longer valid (effective dated)
-- **Validation** > Show Error in Message when trying to register more hours than is currently remaining on AssignedHours on 
+- **Validation** > Show Error in Message when trying to register more hours than is currently remaining on AssignedHours on
 ProjectAssignment
 - **Validation** > Show Error when trying to register hours on a Project outside the ProjectAllocation Period
 
