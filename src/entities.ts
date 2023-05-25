@@ -276,6 +276,20 @@ export namespace TimesheetService {
     endTime: Date;
   }
 
+  export interface ICust_weekOverview {
+    totalWorkedHours: number;
+    totalScheduledHours: number;
+    totalWorkedDays: number;
+    totalSchedulesDays: number;
+  }
+
+  export interface ICust_ProjectEmployeeAID {
+    totalHours: number;
+    AID: number;
+    AAType: string;
+    percentage: number;
+  }
+
   export enum FuncGetDateSpecificWorkSchedule {
     name = "GetDateSpecificWorkSchedule",
     paramStartDate = "startDate",
@@ -289,6 +303,34 @@ export namespace TimesheetService {
 
   export type FuncGetDateSpecificWorkScheduleReturn = ICust_scheduleToShifts[];
 
+  export enum FuncGetWeekProgress {
+    name = "GetWeekProgress",
+    paramStartDate = "startDate",
+    paramNumberOfDays = "numberOfDays",
+    paramEmployeeNumber = "employeeNumber",
+  }
+
+  export interface IFuncGetWeekProgressParams {
+    startDate: string;
+    numberOfDays: number;
+    employeeNumber: number;
+  }
+
+  export type FuncGetWeekProgressReturn = ICust_weekOverview;
+
+  export enum FuncGetProjectWorkedHours {
+    name = "GetProjectWorkedHours",
+    paramEmployeeNumber = "employeeNumber",
+    paramProjectID = "projectID",
+  }
+
+  export interface IFuncGetProjectWorkedHoursParams {
+    employeeNumber: number;
+    projectID: string;
+  }
+
+  export type FuncGetProjectWorkedHoursReturn = ICust_ProjectEmployeeAID[];
+
   export enum Entity {
     Employees = "TimesheetService.Employees",
     AbsenceAttendanceType = "TimesheetService.AbsenceAttendanceType",
@@ -299,6 +341,8 @@ export namespace TimesheetService {
     ProjectEmployeeAID = "TimesheetService.ProjectEmployeeAID",
     WeekOverview = "TimesheetService.WeekOverview",
     Cust_scheduleToShifts = "TimesheetService.cust_scheduleToShifts",
+    Cust_weekOverview = "TimesheetService.cust_weekOverview",
+    Cust_ProjectEmployeeAID = "TimesheetService.cust_ProjectEmployeeAID",
   }
 
   export enum SanitizedEntity {
@@ -311,6 +355,8 @@ export namespace TimesheetService {
     ProjectEmployeeAID = "ProjectEmployeeAID",
     WeekOverview = "WeekOverview",
     Cust_scheduleToShifts = "Cust_scheduleToShifts",
+    Cust_weekOverview = "Cust_weekOverview",
+    Cust_ProjectEmployeeAID = "Cust_ProjectEmployeeAID",
   }
 }
 

@@ -31,6 +31,6 @@ service TimesheetService {
         percentage: Integer;
   }
 
-  function GetProjectWorkedHours(employeeNumber: Integer, projectID: String) returns many cust_ProjectEmployeeAID;*/
+  function GetProjectWorkedHours(employeeNumber: Integer, projectID: String) returns many cust_ProjectEmployeeAID;
 
 }
