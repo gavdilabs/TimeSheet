@@ -1,0 +1,6 @@
+.FlexBoxIndicatorDiagram {
+    font-size: 35px !important;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }

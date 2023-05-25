@@ -1,0 +1,7 @@
+AID;AAType;isAbsence
+100;Normal Work;false
+110;Extra Work;false
+120;Training;false
+200;Illness;true
+210;Vacation;true
+220;Flex;true
