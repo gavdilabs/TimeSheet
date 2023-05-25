@@ -1,17 +1,167 @@
-<mvc:View height="100%" controllerName="com.gavdilabs.timesheet.controller.Main"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m">
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap"
+	xmlns:core="sap.ui.core"
+	xmlns:micro = "sap.suite.ui.microchart"
+	xmlns:layout="sap.ui.layout"
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+	xmlns:unified="sap.ui.unified"
+	xmlns:microchart="sap.suite.ui.microchart"
+	xmlns:forms="sap.ui.layout.form"
+	xmlns:goals="sap.uxap.sample.SharedBlocks.goals"
+	xmlns:personal="sap.uxap.sample.SharedBlocks.personal"
+	xmlns:employment="sap.uxap.sample.SharedBlocks.employment" controllerName="com.gavdilabs.timesheet.controller.Main" height="100%">
+	<m:Page enableScrolling="false">
+		<m:customHeader enableScrolling="false">
+			<f:ShellBar title="Timesheet App">
+				<f:profile>
+					<m:Avatar initials="UI"/>
+				</f:profile>
+				<f:searchManager>
+					<f:SearchManager id="searchField" enableSuggestions="true" suggestionItems="{/Employees}">
+						<f:suggestionItems>
+							<m:SuggestionItem text="{firstName} {lastName}" key="{userName}"/>
+						</f:suggestionItems>
+					</f:SearchManager>
+				</f:searchManager>
+			</f:ShellBar>
+		</m:customHeader>
+		<ObjectPageLayout id="ObjectPageLayout" headerContentPinnable="true" showTitleInHeaderContent="true" showEditHeaderButton="false" editHeaderButtonPress="handleEditBtnPress" upperCaseAnchorBar="false">
+			<headerTitle>
+				<ObjectPageDynamicHeaderTitle>
+					<expandedHeading>
+						<layout:HorizontalLayout>
+							<m:Avatar src="{pictureUrl}" class="sapUiTinyMarginEnd"/>
+							<layout:VerticalLayout>
+								<m:Title text="{firstName} {lastName}" wrapping="true"/>
 
-			<Page showHeader="false">
-					<List
-						headerText="Employees"
-						items="{
-							path: '/Employees'
-						}" >
-						<StandardListItem
-							title="{firstName}"
-							counter="{lastName}"/>
-					</List>
-			</Page>
+								<m:Text text="{title}"/>
+							</layout:VerticalLayout>
+						</layout:HorizontalLayout>
+					</expandedHeading>
+					<snappedHeading>
+						<m:FlexBox fitContainer="true" alignItems="Center">
+							<m:Avatar src="{pictureUrl}" class="sapUiTinyMarginEnd"/>
+							<m:Title text="{firstName} {lastName}" wrapping="true"/>
+						</m:FlexBox>
+					</snappedHeading>
+				</ObjectPageDynamicHeaderTitle>
+			</headerTitle>
+			<headerContent class="headerContentClass">
+				<layout:VerticalLayout/>
+				<layout:HorizontalLayout class="flexHeader">
+					<layout:HorizontalLayout>
+						<layout:VerticalLayout>
+							<m:Text width="100%" class="timesheetClass" text="Timesheet"/>
+							<layout:HorizontalLayout>
+								<layout:VerticalLayout class="chartDataHeader">
+									<m:Label id="daysLabel" text="4/5 days registered"/>
+									<m:ProgressIndicator id="daysProgress" width="100px" showValue="true" state="None"/>
+								</layout:VerticalLayout>
 
+								<layout:VerticalLayout class="chartDataHeader">
+									<m:Label id="hoursLabel" text="30/37 hours registered"/>
+									<m:ProgressIndicator id="hoursProgress" width="100px" showValue="true" state="None"/>
+								</layout:VerticalLayout>
+							</layout:HorizontalLayout>
+						</layout:VerticalLayout>
+						<layout:VerticalLayout>
+							<m:Text class="weekClass" text="Week"/>
+							<m:Text id="weekNumber" class="weekNumberClass" text="50"/>
+						</layout:VerticalLayout>
+					</layout:HorizontalLayout>
+				</layout:HorizontalLayout>
+			</headerContent>
+			<sections>
+				<ObjectPageSection titleUppercase="false" id="projectsOverviewSection" title="Projects Overview">
+					<subSections>
+						<ObjectPageSubSection titleUppercase="false">
+							<blocks>
+								<layout:VerticalLayout>
+
+									<m:Select change="onProjectChosen" selectedKey="" items="{
+									path: '_projectAssignments'
+								}">
+										<core:Item key="{projectID}" text="{_project/projectName}" />
+									</m:Select>
+
+									<layout:HorizontalLayout class="projectOverviewClass">
+										<layout:VerticalLayout class="projectOverviewChartClass">
+											<layout:HorizontalLayout class="sapUiSmallMarginBottom">
+												<m:Text class="remainingHoursClass" text="Remaining hours: "/>
+												<m:Text id="remHoursNumber" class="remainingHoursClass"/>
+											</layout:HorizontalLayout>
+											<m:FlexBox width="22rem" height="9rem" alignItems="Start" justifyContent="SpaceBetween">
+												<m:items>
+													<microchart:InteractiveDonutChart id="AIDchart" selectionChanged="onSelectionChanged"  displayedSegments="4" press="press" segments="{path: '/ProjectEmployeeAID', suspended: true}" modelContextChange="onclick">
+														<microchart:segments>
+															<microchart:InteractiveDonutChartSegment label="{AAType}" value="{percentage}" displayedValue="{percentage}%" color="Error"/>
+														</microchart:segments>
+													</microchart:InteractiveDonutChart>
+												</m:items>
+											</m:FlexBox>
+										</layout:VerticalLayout>
+								
+										<m:Table id="projectOverviewTable" headerText="Project overview"  width="500px" items="{path: '/ProjectEmployeeAID', suspended: true}">
+											<m:columns>
+												<m:Column >
+													<m:header>
+														<m:Text text="Type" />
+													</m:header>
+												</m:Column>
+												<m:Column >
+													<m:header>
+														<m:Text text="Total Hours" />
+													</m:header>
+												</m:Column>
+											</m:columns>
+											<m:ColumnListItem vAlign="Middle">
+												<m:Text text="{AAType}" />
+												<m:Text text="{totalHours}" />
+											</m:ColumnListItem>
+										</m:Table>
+									</layout:HorizontalLayout>
+
+								</layout:VerticalLayout>
+							</blocks>
+
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+				<ObjectPageSection titleUppercase="false" id="weekOverviewSection" title="Week Overview">
+					<subSections>
+						<ObjectPageSubSection titleUppercase="false">
+							<blocks>
+								<m:VBox>
+									<m:SinglePlanningCalendar id="SPC1" firstDayOfWeek="0" viewChange="onChangeWeekView" class="sapUiSmallMarginTop" title= "My Calendar" startDateChange="onCalendarWeekChange">
+										<m:actions>
+											<m:CheckBox id ="showWorkScheduleCheckBox" text="Show work schedule" selected="false" select="onCheckWorkSchedule"/>
+											<m:Button icon="sap-icon://filter" press="openFilterPopup"/>
+											<m:Button id="addNewAppointment" text="Create" press="handleAppointmentCreate" tooltip="Add new appointment" />
+											<m:Button icon="sap-icon://zoom-in" press="zoomIn"/>
+											<m:Button icon="sap-icon://zoom-out" press="zoomOut"/>
+										</m:actions>
+										<m:views>
+											<m:SinglePlanningCalendarWorkWeekView key="WorkWeekView" title="Work Week" />
+											<m:SinglePlanningCalendarWeekView key="WeekView" title="Week" />
+										</m:views>
+										<m:appointments/>
+									</m:SinglePlanningCalendar>
+								</m:VBox>
+
+							</blocks>
+						</ObjectPageSubSection>
+					</subSections>
+				</ObjectPageSection>
+
+			</sections>
+			<footer>
+				<m:OverflowToolbar>
+					<m:ToolbarSpacer />
+					<m:Button type="Accept" text="Accept"/>
+					<m:Button type="Reject" text="Reject"/>
+				</m:OverflowToolbar>
+			</footer>
+		</ObjectPageLayout>
+	</m:Page>
 </mvc:View>

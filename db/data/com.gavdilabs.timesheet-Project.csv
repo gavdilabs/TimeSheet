@@ -1,4 +1,4 @@
-Id;projectName;validFrom;validTo;totalHours
+ID;projectName;validFrom;validTo;totalHours
 bcff35fe-ce29-11ed-afa1-0242ac120002;Project Horizon;'2022-01-01';'2023-12-31';320
 bcff3b26-ce29-11ed-afa1-0242ac120002;Project Azure;'2022-01-01';'2023-12-31';550
 bcff3f0e-ce29-11ed-afa1-0242ac120002;Project Dawn;'2022-01-01';'2023-12-31';785

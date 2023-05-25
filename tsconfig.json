@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "ES2021",
+            "ES2021.String"
+        ],
+        "module": "commonjs",
+        "target": "ES2021",
+        "esModuleInterop": true,
+        "inlineSourceMap": true,
+        "inlineSources": true,
+        "outDir": "./gen/srv",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "preserveConstEnums": true,
+        "skipLibCheck": true
+    },
+    "include": [
+        "src",
+        "tests"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

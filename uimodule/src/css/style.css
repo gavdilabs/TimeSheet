@@ -4,3 +4,81 @@
     justify-content: center;
     align-content: center;
   }
+
+.chartVBox {
+  
+}
+
+.timesheetClass {
+  text-align: center;
+  justify-content: center !important;
+  font-size:x-large !important;
+  display: grid;
+}
+
+.chartDataHeader {
+  text-align: center;
+  justify-content: center !important;
+  display: grid;
+  margin: 15px;
+  
+}
+
+.weekClass {
+  text-align: center;
+  justify-content: center !important;
+  display: grid;
+  font-size:1.5rem !important;
+  margin-left: 20px;
+  margin-right: 20px;
+
+}
+
+.weekNumberClass {
+  text-align: center;
+  justify-content: center !important;
+  display: grid;
+  font-size:4rem !important;
+  margin-left: 20px;
+  margin-right: 20px;
+
+}
+
+.remainingHoursClass {
+  text-align: center;
+  justify-content: center !important;
+  display: grid;
+  font-size:1.5rem !important;
+  margin-right: 10px;
+}
+
+.flexHeader {
+  width: 100%;
+  display:inline-grid !important;
+  justify-items: center !important;
+}
+
+.projectOverviewClass {
+  align-content: center !important;
+  display: flex;
+  margin-top: 20px;
+
+}
+
+.projectOverviewChartClass {
+  height: 100%;
+  align-content: center !important;
+  justify-content: center !important;
+  display: grid;
+  margin-right: 20px;
+}
+
+.filterItem {
+  height: auto !important;
+}
+
+.sapMSinglePCBlockers.sapUiCalendarRowVisFilled>.sapUiCalendarAppType01.sapUiCalendarRowApps>.sapUiCalendarApp:not(.sapUiCalendarAppSel)>.sapUiCalendarAppCont, .sapMSinglePCAppointments.sapUiCalendarRowVisFilled>.sapUiCalendarAppType01.sapUiCalendarRowApps>.sapUiCalendarApp:not(.sapUiCalendarAppSel)>.sapUiCalendarAppCont {
+  background-color: #fdfdfe;
+  opacity: 1;
+  background-size: 13px 13px;
+  background-image: repeating-linear-gradient(45deg, #f3f34a 0, #c5c53d 1.3px, #fdfdfe 0, #fdfdfe 50%);}

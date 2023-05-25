@@ -5,40 +5,72 @@
   "repository": "<Add your repository here>",
   "license": "UNLICENSED",
   "private": true,
+  "scripts": {
+    "start": "node ./srv/server.js",
+    "start:db": "docker-compose up",
+    "dev": "run-s build:cds debug",
+    "debug": "nodemon",
+    "test": "mocha -r ts-node/register tests/**/*.spec.ts",
+    "test:integration": "mocha -r ts-node/register tests/integration/**/*.spec.ts",
+    "test:unit": "mocha -r ts-node/register tests/unit/**/*.spec.ts",
+    "test:e2e": "mocha -r ts-node/register tests/e2e/**/*.spec.ts",
+    "coverage": "nyc npm run test",
+    "lint": "eslint . --ext .ts --fix",
+    "prettier:format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "db:start": "docker-compose up",
+    "db:create": "npx cds-dbm deploy --create-db timesheet_db",
+    "db:schema": "npx cds-dbm deploy",
+    "db:load": "npx cds-dbm deploy --load-via delta",
+    "build": "run-s build:cds build:ts build:clean",
+    "build:prod": "run-s build:cds:prod build:ts build:clean build:cp",
+    "build:cds": "cds build && npm run build:cp",
+    "build:cds:prod": "npx cds build --production",
+    "build:entities": "npx cds2types --cds ./srv/service.cds --output ./src/entities.ts --prefix I -f",
+    "build:clean": "shx cp .cdsrc.json gen/srv",
+    "build:ts": "echo 'Compiling...' && tsc --project tsconfig.build.json",
+    "build:mta": "mbt build",
+    "build:cp": "shx cp .npmrc gen/srv",
+    "deploy": "run-s build build:mta deploy:cf",
+    "deploy:cf": "cross-var cf deploy mta_archives/${npm_package_name}_${npm_package_version}.mtar"
+  },
   "dependencies": {
-    "@sap/cds": "^5",
-    "express": "^4"
+    "@gavdi/authutils": "^1.0.1",
+    "@gavdi/caplog": "^1.0.1",
+    "@sap-cloud-sdk/connectivity": "^2.12.1",
+    "@sap-cloud-sdk/http-client": "^2.14.0",
+    "@sap/audit-logging": "^5.5.3",
+    "@sap/cds": "^5.9.8",
+    "@sap/xsenv": "^3.2.2",
+    "@sap/xssec": "^3.2.13",
+    "cds-routing-handlers": "^3.0.7",
+    "express": "^4.17.3",
+    "passport": "^0.5.2",
+    "reflect-metadata": "^0.1.13",
+    "sap-cf-axios": "^0.3.6"
   },
   "devDependencies": {
-    "sqlite3": "^5.0.2"
-  },
-  "scripts": {
-    "start": "cds run"
-  },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "env": {
-      "es2020": true,
-      "node": true,
-      "jest": true,
-      "mocha": true
-    },
-    "globals": {
-      "SELECT": true,
-      "INSERT": true,
-      "UPDATE": true,
-      "DELETE": true,
-      "CREATE": true,
-      "DROP": true,
-      "CDL": true,
-      "CQL": true,
-      "CXL": true,
-      "cds": true
-    },
-    "rules": {
-      "no-console": "off",
-      "require-atomic-updates": "off"
-    }
+    "@types/chai": "^4.3.4",
+    "@types/chai-http": "^4.2.0",
+    "@types/express": "^4.17.13",
+    "@types/jquery": "^3.5.16",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^18.7.13",
+    "cds2types": "^2.7.2",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "concurrently": "^7.6.0",
+    "cross-var": "^1.1.0",
+    "mbt": "^1.2.16",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.16",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "shx": "^0.3.4",
+    "sqlite3": "^5.1.6",
+    "ts-node": "^10.9.1",
+    "typedi": "^0.10.0",
+    "typescript": "^4.7.2"
   },
   "cds": {
     "requires": {

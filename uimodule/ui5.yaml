@@ -23,4 +23,4 @@ server:
       afterMiddleware: compression
       mountPath: /odata
       configuration:
-        baseUri: "http://localhost:4004/timesheet"
+        baseUri: "http://localhost:3001/odata"

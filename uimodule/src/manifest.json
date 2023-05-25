@@ -78,7 +78,7 @@
         "settings": {
           "synchronizationMode": "None",
           "operationMode": "Server",
-          "autoExpandSelect": false,
+          "autoExpandSelect": true,
           "earlyRequests": true
         }
       }
@@ -93,13 +93,13 @@
         "controlAggregation": "pages",
         "async": true
       },
-      "routes": [
-        {
-          "pattern": "",
-          "name": "main",
-          "target": "main"
+      "routes": {
+        "MainRoute": {
+          "pattern": "main/{empNumber}",
+          "target": "main",
+          "id": "main"
         }
-      ],
+      },
       "targets": {
         "main": {
           "viewId": "main",

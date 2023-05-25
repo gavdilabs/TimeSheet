@@ -6,11 +6,14 @@ import ResourceModel from "sap/ui/model/resource/ResourceModel";
 import ResourceBundle from "sap/base/i18n/ResourceBundle";
 import Router from "sap/ui/core/routing/Router";
 import History from "sap/ui/core/routing/History";
+import Formatter from "../model/formatter";
 
 /**
  * @namespace com.gavdilabs.timesheet.controller
  */
 export default abstract class BaseController extends Controller {
+  public formatter: Formatter = new Formatter();
+
   /**
    * Convenience method for accessing the component of the controller's view.
    * @returns The component of the controller's view
@@ -76,7 +79,7 @@ export default abstract class BaseController extends Controller {
     if (sPreviousHash !== undefined) {
       window.history.go(-1);
     } else {
-      this.getRouter().navTo("main", {}, undefined, true);
+      this.getRouter().navTo("MainRoute", { empNumber: 10009882}, undefined, true);
     }
   }
 }
