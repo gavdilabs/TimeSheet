@@ -38,8 +38,6 @@ Make sure that the UI Enables Drag-and-Create + Drag-and-Resize for Desktop Devi
 1. Allow users to create new appointments by clicking, dragging, and releasing on an empty space in the content area (property: enableAppointmentsCreate).
 2. Allow users to change the duration of an appointment by clicking and dragging one side of the appointment (property: enableAppointmentsResize).
 
-A [Design](https://bitbucket.org/gavdilabs/project_timesheet/downloads/Timesheet_Sketch.png) has been drawn up.
-
 The Backend Service must add the following:
 
 - Provide _Function_ for Remaining Hours for Employee on Project, based on subtracting hours from WorkHours and AssignedHours in ProjectAssignment
@@ -47,9 +45,3 @@ The Backend Service must add the following:
 - **Validation** > Show Error in Message when trying to register more hours than is currently remaining on AssignedHours on
 ProjectAssignment
 - **Validation** > Show Error when trying to register hours on a Project outside the ProjectAllocation Period
-
-## Learn More
-
-Hosted in [BitBucket](https://bitbucket.org/gavdilabs/project_timesheet/src/master/)
-
-_For any questions reach out to [Henrik Secher Jarlskov](hja@gavdilabs.com)_
