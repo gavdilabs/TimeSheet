@@ -1,13 +1,10 @@
 # Timesheet
 
-Example Project for Graduates, using a Timesheet application as example with the following entities included:
+Example Project for Graduates, using a Timesheet application as example on using UI5 / CAP.
 
 ## Getting Started
 
-Prior to running the project you'll need an .npmrc file that gives access to some internal packages.
-This file can be found within the company Teams channel (Tools nad Processes).
-
-Remember to install both dependencies for the UI and the service module prior to running the solution.
+Clone, install Node Depency and run via Project.json scripts.
 
 Entity | Purpose
 ---------|----------
@@ -22,7 +19,7 @@ Entity | Purpose
 
 Implement UI Module `timesheet`
 
-The UI must have the following:
+The UI includes the following:
 
 - List of Employees
 - List of Projects (Assigned to Select Employee)
@@ -33,15 +30,19 @@ The UI must have the following:
 - Show Messages to the User on different types of Validations
 - Have a "Jump To Date" button, allowing the user to jump to any random week
 
-Make sure that the UI Enables Drag-and-Create + Drag-and-Resize for Desktop Devices:
+Features:
 
 1. Allow users to create new appointments by clicking, dragging, and releasing on an empty space in the content area (property: enableAppointmentsCreate).
 2. Allow users to change the duration of an appointment by clicking and dragging one side of the appointment (property: enableAppointmentsResize).
 
-The Backend Service must add the following:
+Service:
 
 - Provide _Function_ for Remaining Hours for Employee on Project, based on subtracting hours from WorkHours and AssignedHours in ProjectAssignment
 - Don't list Project where there is 0 hours left on Project Assignments or it is not no longer valid (effective dated)
 - **Validation** > Show Error in Message when trying to register more hours than is currently remaining on AssignedHours on
 ProjectAssignment
 - **Validation** > Show Error when trying to register hours on a Project outside the ProjectAllocation Period
+
+  ## License
+
+  Released under Apache-2 as an Inspiration - Feel free to clone and adapt in any way you'll like!
