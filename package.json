@@ -1,9 +1,9 @@
 {
   "name": "project_timesheet",
   "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
+  "description": "Timesheet Example Solution",
+  "repository": "https://github.com/gavdilabs/TimeSheet",
+  "license": "Apache-2",
   "private": true,
   "scripts": {
     "start": "node ./srv/server.js",
